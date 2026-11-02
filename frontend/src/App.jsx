@@ -171,9 +171,10 @@ export default function App() {
         )}
       </main>
 
-      <footer className="footer">
-        Trained on Stanford Cars (20 brands). Other brands or non-car photos can still be
-        assigned to one of these 20, so treat low confidence with care.
+     <footer className="footer">
+        Trained on Stanford Cars (20 brands). Photos that are not cars are rejected. A car
+        from a brand outside these 20 can still be matched to the closest one, so treat
+        low confidence with care.
       </footer>
     </div>
   );
