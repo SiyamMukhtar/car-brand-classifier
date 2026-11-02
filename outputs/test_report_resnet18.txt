@@ -1,0 +1,41 @@
+Architecture: resnet18   (best epoch 14, val macro-F1 0.886)
+Test images : 1861
+Accuracy    : 0.883
+Macro-F1    : 0.885
+
+               precision    recall  f1-score   support
+
+        Acura      0.926     0.887     0.906        71
+ Aston Martin      0.896     0.915     0.905        47
+         Audi      0.887     0.946     0.915       166
+          BMW      0.901     0.929     0.915       156
+      Bentley      0.984     0.882     0.930        68
+        Buick      0.840     0.894     0.866        47
+    Chevrolet      0.856     0.879     0.867       264
+     Chrysler      0.877     0.842     0.859        76
+        Dodge      0.913     0.853     0.882       184
+      Ferrari      0.906     1.000     0.950        48
+         Ford      0.885     0.815     0.848       151
+          GMC      0.836     0.812     0.824        69
+        Honda      0.843     0.896     0.869        48
+      Hyundai      0.848     0.868     0.858       129
+         Jeep      0.925     0.954     0.939        65
+  Lamborghini      0.938     0.978     0.957        46
+Mercedes-Benz      0.872     0.895     0.883        76
+       Nissan      0.913     0.824     0.866        51
+       Suzuki      0.784     0.800     0.792        50
+       Toyota      0.875     0.857     0.866        49
+
+     accuracy                          0.883      1861
+    macro avg      0.885     0.886     0.885      1861
+ weighted avg      0.884     0.883     0.883      1861
+
+Most common mistakes (true -> predicted):
+  Dodge -> Chevrolet: 11 images
+  GMC -> Chevrolet: 10 images
+  Chevrolet -> GMC: 8 images
+  Ford -> Dodge: 6 images
+  Ford -> Audi: 5 images
+  Dodge -> Ford: 4 images
+  Mercedes-Benz -> BMW: 4 images
+  Chevrolet -> Dodge: 4 images

@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+frontend/dist/
+data/raw/
+data/clean/
+colab_pack/
+colab_pack.zip
+test_images/
+.vscode/

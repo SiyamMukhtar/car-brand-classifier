@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap");
+
+/* ---------- Colour theme: "Navy" (change only these values to re-colour the app) ---------- */
+:root {
+  color-scheme: dark;
+  --bg: #060a14;                          /* very dark page background */
+  --glow: rgba(77, 120, 255, 0.22);       /* soft light at the top of the page */
+  --card: #1f2c4d;                        /* main card: clearly lighter than the page */
+  --card-2: #2a3a64;                      /* drop zone and result box inside the card */
+  --hover: #33457a;                       /* drop zone on hover */
+  --line: #3d4f80;                        /* borders */
+  --line-2: #5568a3;                      /* stronger borders (dashed box) */
+  --track: #374a7a;                       /* empty part of bars */
+  --fill: #8394c6;                        /* bars of candidates 2 and 3 */
+  --disabled: #34446f;
+  --disabled-text: #8e9cc4;
+  --text: #f1f3f9;
+  --muted: #aab5d2;
+  --accent: #ff5a36;
+  --accent-soft: rgba(255, 90, 54, 0.16);
+  --accent-line: rgba(255, 90, 54, 0.4);
+  --high: #34d399;
+  --mid: #fbbf24;
+  --low: #f87171;
+  font-family: "Sora", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+  background: radial-gradient(900px 420px at 50% -120px, var(--glow), transparent 70%), var(--bg);
+  color: var(--text);
+}
+
+.page { max-width: 580px; margin: 0 auto; padding: 36px 16px 48px; }
+
+/* Header */
+.header { display: flex; align-items: center; gap: 14px; }
+.logo {
+  width: 46px; height: 46px; border-radius: 13px; flex: none;
+  display: grid; place-items: center;
+  background: var(--accent-soft); color: var(--accent);
+  border: 1px solid var(--accent-line);
+}
+h1 { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.01em; }
+.subtitle { margin: 3px 0 0; color: var(--muted); font-size: 14px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+.chip {
+  font-size: 12px; padding: 5px 11px; border-radius: 999px;
+  color: var(--muted); background: var(--card); border: 1px solid var(--line);
+}
+
+/* Card */
+.card {
+  background: linear-gradient(160deg, var(--card), color-mix(in srgb, var(--card) 80%, #000));
+  border: 1px solid var(--line-2);
+  border-radius: 20px; padding: 18px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+}
+
+/* Drop zone */
+.drop {
+  border: 1.5px dashed var(--line-2); border-radius: 14px; min-height: 230px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 14px; cursor: pointer; background: var(--card-2);
+  transition: border-color 0.15s, background 0.15s;
+}
+.drop:hover, .drop.drag { border-color: var(--accent); background: var(--hover); }
+.drop.filled { border-style: solid; border-color: var(--line); }
+.placeholder { text-align: center; color: var(--muted); }
+.placeholder svg { color: var(--accent); margin-bottom: 8px; }
+.drop-title { margin: 0; color: var(--text); font-weight: 600; font-size: 16px; }
+.drop-hint { margin: 6px 0 0; font-size: 13px; }
+.preview { max-width: 100%; max-height: 330px; border-radius: 10px; display: block; }
+
+/* Buttons */
+.actions { display: flex; gap: 10px; margin-top: 14px; }
+.btn {
+  flex: 1; padding: 13px 16px; font: inherit; font-size: 15px; font-weight: 600;
+  border: 0; border-radius: 12px; cursor: pointer;
+  background: var(--accent); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  transition: filter 0.15s, transform 0.05s;
+}
+.btn:hover:not(:disabled) { filter: brightness(1.1); }
+.btn:active:not(:disabled) { transform: translateY(1px); }
+.btn:disabled { background: var(--disabled); color: var(--disabled-text); cursor: not-allowed; }
+.btn.ghost { flex: none; background: transparent; color: var(--muted); border: 1px solid var(--line); }
+.btn.ghost:hover { color: var(--text); border-color: var(--line-2); filter: none; }
+
+.spinner {
+  width: 15px; height: 15px; border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35); border-top-color: #fff;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Error */
+.error {
+  margin-top: 14px; padding: 12px 14px; border-radius: 12px; font-size: 14px;
+  background: rgba(248, 113, 113, 0.1); color: #fca5a5;
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+/* Result */
+.result {
+  margin-top: 18px; padding: 18px; border-radius: 14px;
+  background: var(--card-2); border: 1px solid var(--line);
+  --tone: var(--high);
+}
+.result.mid { --tone: var(--mid); }
+.result.low { --tone: var(--low); }
+
+.label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.label.top { margin: 20px 0 8px; }
+.brand-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 6px; }
+.brand { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+.pill {
+  padding: 6px 12px; border-radius: 999px; font-size: 14px; font-weight: 600;
+  color: var(--tone); background: color-mix(in srgb, var(--tone) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--tone) 40%, transparent);
+}
+.meter { height: 8px; border-radius: 99px; background: var(--track); margin-top: 14px; overflow: hidden; }
+.meter-fill { height: 100%; border-radius: 99px; background: var(--tone); transition: width 0.5s ease; }
+
+.warn {
+  margin-top: 14px; padding: 10px 12px; border-radius: 10px; font-size: 13px;
+  background: rgba(251, 191, 36, 0.1); color: #fcd34d;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.row { display: flex; align-items: center; gap: 10px; margin: 8px 0; color: var(--muted); }
+.row.first { color: var(--text); }
+.rank {
+  width: 20px; height: 20px; border-radius: 6px; flex: none; font-size: 12px;
+  display: grid; place-items: center; background: var(--track);
+}
+.row.first .rank { background: var(--accent); color: #fff; }
+.name { width: 118px; font-size: 14px; flex: none; }
+.bar { flex: 1; height: 8px; border-radius: 99px; background: var(--track); overflow: hidden; }
+.fill { height: 100%; border-radius: 99px; background: var(--fill); }
+.row.first .fill { background: var(--accent); }
+.pct { width: 54px; text-align: right; font-size: 13px; flex: none; }
+
+.footer { margin-top: 18px; font-size: 12px; line-height: 1.6; color: var(--muted); text-align: center; }
+
+@media (max-width: 480px) {
+  .name { width: 92px; }
+  .brand { font-size: 25px; }
+}
+.warn.big { margin-top: 18px; padding: 16px; font-size: 15px; text-align: center; }
